@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Twitter, ChevronDown } from 'lucide-react';
+import { Typewriter } from 'react-simple-typewriter';
 
 const Hero = () => {
   return (
@@ -37,7 +38,18 @@ const Hero = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
             >
               <span className="block">Piyush Arora</span>
-              <span className="text-primary-500">Full Stack Developer</span>
+              {/* <span className="text-primary-500">Full Stack Developer</span> */}
+              <span className="text-primary-500 text-5xl">
+                <Typewriter
+                  words={['Full Stack Developer', 'Problem Solver', 'Tech Enthusiast']}
+                  loop={0} // 0 = infinite loop
+                  cursor
+                  cursorStyle="|"
+                  typeSpeed={70}
+                  deleteSpeed={50}
+                  delaySpeed={1500}
+                />
+              </span>
             </motion.h1>
             
             <motion.p 
