@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Twitter, ChevronDown } from 'lucide-react';
 import { Typewriter } from 'react-simple-typewriter';
+import myPhoto from "../Images/portfolio-img.jpg";
 
 const Hero = () => {
   return (
@@ -102,7 +103,7 @@ With hands-on experience in MERN, FastAPI, and Docker, I turn ideas into scalabl
           >
             <div className="w-72 h-72 md:w-96 md:h-96 rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center overflow-hidden">
               <img 
-                src="src\Images\portfolio-img.jpg" 
+                src = {myPhoto}
                 alt="Portrait" 
                 className="w-full h-full object-cover mix-blend-overlay opacity-85"
               />
