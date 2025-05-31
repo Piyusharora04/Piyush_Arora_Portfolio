@@ -158,10 +158,10 @@ export const experiences: Experience[] = [
 export const education: Education[] = [
   {
     id: 1,
-    degree: 'Bachelor of Technology in Information Technology',
-    institution: 'Indian Institute of Information Technology Una',
+    degree: 'Bachelor of Technology (B.Tech) in Information Technology',
+    institution: 'Indian Institute of Information Technology (IIIT) Una',
     period: '2022 - 2026',
-    description: 'Currently pursuing a B.Tech in Information Technology with a focus on software development, problem-solving, and machine learning. Actively involved in technical clubs, project development, and hackathons.',
+    description: 'Currently pursuing B.Tech in IT branch with a focus on software development, problem-solving, and machine learning. Actively involved in technical clubs, project development, and hackathons.',
   },
   {
     id: 2,
