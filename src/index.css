@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: theme('colors.primary.500');
+  --secondary: theme('colors.secondary.500');
+  --accent: theme('colors.accent.500');
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-sans text-dark-500 antialiased;
+  overflow-x: hidden;
+}
+
+.section {
+  @apply relative overflow-hidden flex items-center justify-center min-h-screen py-20;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:-translate-y-1;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary-500 text-white hover:bg-primary-600 active:bg-primary-700;
+  }
+
+  .btn-secondary {
+    @apply btn bg-secondary-500 text-white hover:bg-secondary-600 active:bg-secondary-700;
+  }
+
+  .btn-outline {
+    @apply btn border-2 border-primary-500 text-primary-500 hover:bg-primary-50 active:bg-primary-100;
+  }
+
+  .heading-xl {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+  }
+
+  .heading-lg {
+    @apply text-3xl md:text-4xl font-bold tracking-tight;
+  }
+
+  .heading-md {
+    @apply text-2xl md:text-3xl font-bold tracking-tight;
+  }
+
+  .heading-sm {
+    @apply text-xl md:text-2xl font-bold tracking-tight;
+  }
+
+  .subtitle {
+    @apply text-lg md:text-xl text-dark-300 leading-relaxed;
+  }
+}
+
+/* Animation delay utilities */
+.delay-100 {
+  animation-delay: 100ms;
+}
+.delay-200 {
+  animation-delay: 200ms;
+}
+.delay-300 {
+  animation-delay: 300ms;
+}
+.delay-400 {
+  animation-delay: 400ms;
+}
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  @apply absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  40% {
+    transform: translateY(-20px) translateX(-50%);
+  }
+  60% {
+    transform: translateY(-10px) translateX(-50%);
+  }
+}
+
+/* Progressive reveal animations */
+.reveal {
+  position: relative;
+  opacity: 0;
+  transition: 1s all ease;
+}
+
+.reveal.active {
+  opacity: 1;
+}
+
+.reveal.fade-bottom {
+  transform: translateY(100px);
+}
+
+.reveal.fade-bottom.active {
+  transform: translateY(0);
+}
+
+.reveal.fade-left {
+  transform: translateX(-100px);
+}
+
+.reveal.fade-left.active {
+  transform: translateX(0);
+}
+
+.reveal.fade-right {
+  transform: translateX(100px);
+}
+
+.reveal.fade-right.active {
+  transform: translateX(0);
+}
+
+/* Project card styling */
+.project-card {
+  @apply relative overflow-hidden rounded-xl transition-all duration-500;
+}
+
+.project-card:hover .project-content {
+  @apply opacity-100;
+}
+
+.project-card:hover img {
+  @apply scale-110 filter brightness-50;
+}
+
+.project-content {
+  @apply absolute inset-0 flex flex-col justify-end p-6 opacity-0 transition-opacity duration-500;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+}
+
+/* Skill bars */
+.skill-bar {
+  @apply h-2 bg-gray-200 rounded-full overflow-hidden;
+}
+
+.skill-progress {
+  @apply h-full rounded-full transition-all duration-1000 ease-out;
+  width: 0;
+}
+
+.skill-progress.animate {
+  width: var(--progress);
+}
