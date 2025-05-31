@@ -8,7 +8,7 @@ const Skills = () => {
     <section className="section bg-primary-50" id="skills">
       <div className="container mx-auto px-4">
         <motion.div 
-          className="mb-16 text-center"
+          className="mb-14 text-center"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
