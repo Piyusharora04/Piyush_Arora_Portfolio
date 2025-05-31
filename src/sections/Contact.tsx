@@ -69,7 +69,7 @@ const Contact = () => {
               <div className="bg-primary-50 p-6 rounded-lg">
                 <h3 className="text-lg font-bold mb-4">Availability</h3>
                 <div className="space-y-2 text-dark-400">
-                  <p>Open to SDE Internships (Summer/Winter 2025)</p>
+                  <p>Open to SDE role and Full Stack Development Internships.</p>
                   <p>Available for AI/ML Research Roles & Open Source Collaboration</p>
                   <p>Currently exploring real-time systems and AI integration</p>
                 </div>

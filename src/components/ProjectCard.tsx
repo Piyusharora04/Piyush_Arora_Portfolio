@@ -37,14 +37,14 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
         </div>
         
         <div className="flex gap-3">
-          <a 
+          {/* <a 
             href={project.demoLink} 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-sm px-3 py-1 bg-white text-primary-500 rounded-md hover:bg-primary-50 transition-colors"
           >
             Live Demo
-          </a>
+          </a> */}
           <a 
             href={project.codeLink} 
             target="_blank" 
