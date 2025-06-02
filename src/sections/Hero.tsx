@@ -72,7 +72,7 @@ With hands-on experience in MERN, FastAPI, and Docker, I turn ideas into scalabl
               <a href="#contact" className="btn-primary w-40">
                 Get in Touch
               </a>
-              <a href="" className="btn-outline w-40 ">
+              <a href="https://drive.google.com/file/d/1QYEgtsAPgh0RaXvi2p6uOqcWi1xGYokl/view?usp=sharing" className="btn-outline w-40 " target='_blank'>
                 Resume
               </a>
             </motion.div>
