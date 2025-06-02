@@ -40,7 +40,7 @@ const Hero = () => {
             >
               <span className="block">Piyush Arora</span>
               {/* <span className="text-primary-500">Full Stack Developer</span> */}
-              <span className="text-primary-500 text-5xl">
+              <span className="text-primary-500 lg:text-5xl md:text-3xl sm:text-md text-3xl">
                 <Typewriter
                   words={['Full Stack Developer', 'Problem Solver', 'Tech Enthusiast']}
                   loop={0} // 0 = infinite loop
@@ -69,11 +69,11 @@ With hands-on experience in MERN, FastAPI, and Docker, I turn ideas into scalabl
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.8 }}
             >
-              <a href="#contact" className="btn-primary">
+              <a href="#contact" className="btn-primary w-40">
                 Get in Touch
               </a>
-              <a href="#projects" className="btn-outline">
-                View Work
+              <a href="" className="btn-outline w-40 ">
+                Resume
               </a>
             </motion.div>
             
@@ -89,6 +89,7 @@ With hands-on experience in MERN, FastAPI, and Docker, I turn ideas into scalabl
               <a href="https://www.linkedin.com/in/piyush-arora-363a59265/" target="_blank" rel="noopener noreferrer" className="text-dark-400 hover:text-primary-500 transition-colors">
                 <Linkedin size={24} />
               </a>
+              
               {/* <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-dark-400 hover:text-primary-500 transition-colors">
                 <Twitter size={24} />
               </a> */}
