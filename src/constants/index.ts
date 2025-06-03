@@ -69,17 +69,17 @@ export const skills: Skill[] = [
     color: 'bg-primary-700',
   },
   {
-    name: 'JavaScript/TypeScript',
-    level: 85,
-    color: 'bg-secondary-700',
-  },
-  {
     name: 'HTML/CSS',
     level: 95,
     color: 'bg-accent-700',
   },
   {
-    name: 'WebSockets',
+    name: 'Machine Learning',
+    level: 85,
+    color: 'bg-secondary-700',
+  },
+  {
+    name: 'Natural Language Processing',
     level: 70,
     color: 'bg-primary-800',
   },
