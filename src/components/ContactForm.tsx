@@ -1,18 +1,18 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send } from 'lucide-react';
+import { useState } from 'react';
 import emailjs from 'emailjs-com';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    message: '',
   });
   const [errors, setErrors] = useState({
     name: '',
     email: '',
-    message: ''
+    message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -22,7 +22,7 @@ const ContactForm = () => {
     const newErrors = {
       name: '',
       email: '',
-      message: ''
+      message: '',
     };
 
     if (!formData.name.trim()) {
@@ -52,127 +52,129 @@ const ContactForm = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
 
+    if (validateForm()) {
+      setIsSubmitting(true);
 
-const handleSubmit = (e: React.FormEvent) => {
-  e.preventDefault();
+      emailjs
+        .send(
+          'service_r47bk47',
+          'template_ya20ahf',
+          {
+            name: formData.name,
+            email: formData.email,
+            message: formData.message,
+          },
+          'HB-vkSovgpqDhpvrB',
+        )
+        .then(() => {
+          setIsSubmitting(false);
+          setSubmitSuccess(true);
+          setFormData({
+            name: '',
+            email: '',
+            message: '',
+          });
 
-  if (validateForm()) {
-    setIsSubmitting(true);
-
-    emailjs
-      .send(
-        'service_r47bk47',       // e.g., 'service_xxx123'
-        'template_ya20ahf',      // e.g., 'template_abc456'
-        {
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-        },
-        'HB-vkSovgpqDhpvrB'        // e.g., '9A2kKXXXXePq-XXX'
-      )
-      .then(() => {
-        setIsSubmitting(false);
-        setSubmitSuccess(true);
-        setFormData({
-          name: '',
-          email: '',
-          message: '',
+          setTimeout(() => setSubmitSuccess(false), 5000);
+        })
+        .catch((error) => {
+          console.error('EmailJS Error:', error);
+          alert('Something went wrong. Please try again.');
+          setIsSubmitting(false);
         });
+    }
+  };
 
-        // Optional: hide success after 5s
-        setTimeout(() => setSubmitSuccess(false), 5000);
-      })
-      .catch((error) => {
-        console.error('EmailJS Error:', error);
-        alert('Something went wrong. Please try again.');
-        setIsSubmitting(false);
-      });
-  }
-};
-
+  const inputClass = (hasError: boolean) =>
+    `w-full rounded-2xl border bg-slate-950/70 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-600 focus:ring-2 focus:ring-cyan-300 ${
+      hasError ? 'border-red-400' : 'border-white/10 focus:border-cyan-300'
+    }`;
 
   return (
     <motion.div
-      className="w-full max-w-md mx-auto"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      className="w-full"
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      transition={{ duration: 0.4 }}
       viewport={{ once: true }}
     >
       {submitSuccess ? (
-        <motion.div 
-          className="bg-success-50 text-success-500 p-4 rounded-lg mb-6 text-center"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
+        <motion.div
+          className="mb-5 rounded-2xl border border-emerald-300/30 bg-emerald-300/10 p-4 text-sm text-emerald-100"
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
         >
-          Thanks for your message! I'll get back to you soon.
+          Thanks for your message. I will get back to you soon.
         </motion.div>
       ) : null}
-      
-      <form onSubmit={handleSubmit} className="space-y-4">
+
+      <form onSubmit={handleSubmit} className="grid gap-4">
         <div>
-          <label htmlFor="name" className="block mb-2 text-dark-500">Name</label>
+          <label htmlFor="name" className="mb-2 block text-sm font-medium text-slate-300">
+            Name
+          </label>
           <input
             type="text"
             id="name"
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className={`w-full px-4 py-2 rounded-lg border ${errors.name ? 'border-error-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-primary-500`}
+            className={inputClass(Boolean(errors.name))}
             placeholder="Your name"
           />
-          {errors.name && <p className="mt-1 text-sm text-error-500">{errors.name}</p>}
+          {errors.name ? <p className="mt-1 text-sm text-red-300">{errors.name}</p> : null}
         </div>
-        
+
         <div>
-          <label htmlFor="email" className="block mb-2 text-dark-500">Email</label>
+          <label htmlFor="email" className="mb-2 block text-sm font-medium text-slate-300">
+            Email
+          </label>
           <input
             type="email"
             id="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className={`w-full px-4 py-2 rounded-lg border ${errors.email ? 'border-error-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-primary-500`}
+            className={inputClass(Boolean(errors.email))}
             placeholder="your.email@example.com"
           />
-          {errors.email && <p className="mt-1 text-sm text-error-500">{errors.email}</p>}
+          {errors.email ? <p className="mt-1 text-sm text-red-300">{errors.email}</p> : null}
         </div>
-        
+
         <div>
-          <label htmlFor="message" className="block mb-2 text-dark-500">Message</label>
+          <label htmlFor="message" className="mb-2 block text-sm font-medium text-slate-300">
+            Message
+          </label>
           <textarea
             id="message"
             name="message"
             value={formData.message}
             onChange={handleChange}
             rows={5}
-            className={`w-full px-4 py-2 rounded-lg border ${errors.message ? 'border-error-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-primary-500`}
-            placeholder="Your message"
+            className={inputClass(Boolean(errors.message))}
+            placeholder="Tell me about the role, team, or opportunity"
           />
-          {errors.message && <p className="mt-1 text-sm text-error-500">{errors.message}</p>}
+          {errors.message ? <p className="mt-1 text-sm text-red-300">{errors.message}</p> : null}
         </div>
-        
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className={`w-full btn-primary flex items-center justify-center space-x-2 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
-        >
+
+        <button type="submit" disabled={isSubmitting} className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-60">
           {isSubmitting ? (
             <>
-              <div className="w-5 h-5 border-t-2 border-b-2 border-white rounded-full animate-spin"></div>
-              <span>Sending...</span>
+              <span className="h-4 w-4 rounded-full border-2 border-slate-950/30 border-t-slate-950 animate-spin" />
+              Sending
             </>
           ) : (
             <>
-              <span>Send Message</span>
-              <Send size={18} />
+              Send message <Send size={17} />
             </>
           )}
         </button>

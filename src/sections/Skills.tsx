@@ -1,101 +1,64 @@
 import { motion } from 'framer-motion';
-import { skills } from '../constants';
-import SkillBar from '../components/SkillBar';
-import { Code, Database, Brush, Server } from 'lucide-react';
+import { Braces, Brain, Cloud, Code, Database, Server } from 'lucide-react';
+import { skillGroups } from '../constants';
+
+const icons = [Braces, Code, Server, Brain, Database, Cloud];
 
 const Skills = () => {
   return (
-    <section className="section bg-primary-50" id="skills">
-      <div className="container mx-auto px-4">
-        <motion.div 
-          className="mb-14 text-center"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+    <section className="section bg-slate-950" id="skills">
+      <div className="absolute inset-x-0 top-1/3 h-40 bg-gradient-to-r from-transparent via-cyan-300/5 to-transparent" />
+      <div className="section-shell">
+        <motion.div
+          className="mb-10 max-w-3xl"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{ duration: 0.45 }}
           viewport={{ once: true }}
         >
-          <h2 className="heading-lg mb-4">My Skills</h2>
-          <div className="w-20 h-1 bg-primary-500 mx-auto"></div>
+          <p className="eyebrow mb-3">Technical Expertise</p>
+          <h2 className="heading-lg">A stack shaped around shipping reliable software.</h2>
+          <p className="body-copy mt-4">
+            No arbitrary percentages, just the tools and systems I use to build full-stack products, backend
+            services, AI workflows, and platform automation.
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <div className="mb-8">
-              {skills.map((skill, index) => (
-                <SkillBar key={skill.name} skill={skill} index={index} />
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <motion.div 
-                className="bg-white p-6 rounded-lg shadow-md"
-                whileHover={{ y: -10, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}
-                transition={{ duration: 0.3 }}
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {skillGroups.map((group, index) => {
+            const Icon = icons[index] ?? Code;
+            return (
+              <motion.article
+                key={group.title}
+                className="spotlight-panel group rounded-3xl p-5"
+                initial={{ opacity: 0, y: 24, filter: 'blur(8px)' }}
+                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -6 }}
               >
-                <div className="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center mb-4">
-                  <Code className="text-primary-500" size={24} />
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-300/10 text-cyan-200 transition group-hover:scale-105 group-hover:bg-cyan-300/15">
+                  <Icon size={21} />
                 </div>
-                <h3 className="text-xl font-bold mb-2">Full-Stack Development</h3>
-                <p className="text-dark-400">
-                  Experienced in building scalable web applications using the MERN stack, RESTful APIs, and real-time features with WebSockets.
-                </p>
-              </motion.div>
-              
-              <motion.div 
-                className="bg-white p-6 rounded-lg shadow-md"
-                whileHover={{ y: -10, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="w-12 h-12 rounded-full bg-secondary-100 flex items-center justify-center mb-4">
-                  <Server className="text-secondary-500" size={24} />
+                <h3 className="mt-5 text-xl font-semibold text-white">{group.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-400">{group.description}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {group.skills.map((skill, skillIndex) => (
+                    <motion.span
+                      className="chip"
+                      key={skill}
+                      initial={{ opacity: 0, scale: 0.94 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.25, delay: index * 0.04 + skillIndex * 0.025 }}
+                      viewport={{ once: true }}
+                    >
+                      {skill}
+                    </motion.span>
+                  ))}
                 </div>
-                <h3 className="text-xl font-bold mb-2">Backend & APIs</h3>
-                <p className="text-dark-400">
-                  Skilled in developing secure, high-performance backend systems with Node.js, Express, FastAPI, and MongoDB, integrated with Docker for deployment.
-                </p>
-              </motion.div>
-              
-              <motion.div 
-                className="bg-white p-6 rounded-lg shadow-md"
-                whileHover={{ y: -10, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="w-12 h-12 rounded-full bg-accent-100 flex items-center justify-center mb-4">
-                  <Brush className="text-accent-500" size={24} />
-                </div>
-                <h3 className="text-xl font-bold mb-2">Machine Learning</h3>
-                <p className="text-dark-400">
-                  Built intelligent tools using Ml, NLP, and LLMs for summarization, querying, and chatbot functionality across PDFs and YouTube videos.
-                </p>
-              </motion.div>
-              
-              <motion.div 
-                className="bg-white p-6 rounded-lg shadow-md"
-                whileHover={{ y: -10, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center mb-4">
-                  <Database className="text-primary-500" size={24} />
-                </div>
-                <h3 className="text-xl font-bold mb-2">Problem Solving & DSA</h3>
-                <p className="text-dark-400">
-                  Solved 600+ coding problems accross various platforms achieving a strong grasp of data structures, algorithms, and competitive coding techniques.
-                </p>
-              </motion.div>
-            </div>
-          </motion.div>
+              </motion.article>
+            );
+          })}
         </div>
       </div>
     </section>

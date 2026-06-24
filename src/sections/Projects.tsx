@@ -1,50 +1,34 @@
 import { motion } from 'framer-motion';
-import { projects } from '../constants';
 import ProjectCard from '../components/ProjectCard';
+import { projects } from '../constants';
 
 const Projects = () => {
   return (
-    <section className="section bg-dark-600 text-white" id="projects">
-      <div className="container mx-auto px-1">
-        <motion.div 
-          className="mb-16 text-center"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+    <section className="section bg-[linear-gradient(180deg,#020617_0%,#08111f_52%,#020617_100%)]" id="projects">
+      <div className="animated-grid absolute inset-0 opacity-30" />
+      <div className="section-shell">
+        <motion.div
+          className="mb-10 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{ duration: 0.45 }}
           viewport={{ once: true }}
         >
-          <h2 className="heading-lg mb-4">My Projects</h2>
-          <div className="w-20 h-1 bg-primary-500 mx-auto"></div>
-          <p className="max-w-2xl mx-auto mt-6 text-gray-300">
-            Here are some of my recent projects showcasing my skills and expertise in web development.
+          <div className="max-w-3xl">
+            <p className="eyebrow mb-3">Projects</p>
+            <h2 className="heading-lg">Flagship builds aligned with backend, full-stack, and AI platform roles.</h2>
+          </div>
+          <p className="max-w-md text-sm leading-6 text-slate-400">
+            Focused case studies that show real-time systems, execution infrastructure, retrieval pipelines, and
+            product-minded engineering.
           </p>
         </motion.div>
 
-        <div className="m-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="relative grid gap-5 lg:grid-cols-2">
           {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
-
-        <motion.div 
-          className="text-center mt-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          <p className="text-gray-300 mb-6">
-            Interested in seeing more of my work?
-          </p>
-          <a 
-            href="https://github.com/Piyusharora04" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="btn-primary"
-          >
-            View All Projects
-          </a>
-        </motion.div>
       </div>
     </section>
   );
