@@ -66,7 +66,7 @@ const ContactForm = () => {
 
       emailjs
         .send(
-          'service_r47bk47',
+          'service_zpifn18',
           'template_ya20ahf',
           {
             name: formData.name,
