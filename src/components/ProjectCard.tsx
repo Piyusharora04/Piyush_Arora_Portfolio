@@ -41,7 +41,7 @@ const DeepDocPreview = () => (
       {['PDFs', 'Chunks', 'Vectors'].map((item, itemIndex) => (
         <Fragment key={item}>
           <div className="rounded-xl border border-white/10 bg-white/[0.05] px-2 py-3">
-            {itemIndex === 0 ? <FileSearch className="mx-auto mb-2 text-cyan-200 lg:p-8 border-cyan-300/20 shadow-cyan-950/30" size={18} /> : null}
+            {itemIndex === 0 ? <FileSearch className="mx-auto mb-2 text-cyan-200" size={18} /> : null}
             {itemIndex === 1 ? <Terminal className="mx-auto mb-2 text-violet-200" size={18} /> : null}
             {itemIndex === 2 ? <Play className="mx-auto mb-2 text-emerald-200" size={18} /> : null}
             {item}
@@ -68,18 +68,14 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
       className="spotlight-panel group flex h-full flex-col rounded-3xl p-5 transition duration-300 sm:p-6"
       initial={{ opacity: 0, y: 28, filter: 'blur(10px)' }}
       whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-      transition={{ duration: 0.55, delay: index * 0.1, ease: 'easeOut' }}
-      viewport={{ once: true, margin: '-80px' }}
-      whileHover={{ y: -8, scale: 1.01 }}
+      transition={{ duration: 0.35, delay: index * 0.1, ease: 'easeOut' }}
+      viewport={{ once: true, amount:0.2 }}
+      whileHover={{ y: -5, scale: 1.01 }}
     >
       <div className="mb-6 overflow-hidden rounded-2xl bg-gradient-to-br from-cyan-300/14 via-white/[0.06] to-violet-400/14 p-3">
-        <motion.div
-          initial={{ y: 8 }}
-          whileHover={{ y: -2 }}
-          transition={{ duration: 0.25 }}
-        >
+        <div>
           {isCodeCollab ? <CodeCollabPreview /> : <DeepDocPreview />}
-        </motion.div>
+        </div>
       </div>
 
       <div className="flex items-start justify-between gap-4">
@@ -94,17 +90,13 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
 
       <ul className="mt-5 grid gap-3 text-sm leading-6 text-slate-300">
         {project.impact.map((item, itemIndex) => (
-          <motion.li
+          <li
             key={item}
             className="flex gap-3"
-            initial={{ opacity: 0, x: -10 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.35, delay: index * 0.08 + itemIndex * 0.05 }}
-            viewport={{ once: true }}
           >
-            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300 shadow-[0_0_14px_rgba(34,211,238,0.7)]" />
+            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300 shadow-[0_0_8px_rgba(34,211,238,0.7)]" />
             <span>{item}</span>
-          </motion.li>
+          </li>
         ))}
       </ul>
 
